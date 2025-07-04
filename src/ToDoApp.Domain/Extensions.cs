@@ -1,6 +1,11 @@
-﻿namespace ToDoApp.Domain;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-public class Extensions
+namespace ToDoApp.Domain;
+
+public static class Extensions
 {
-    
+    public static IServiceCollection AddDomain(this IServiceCollection services)
+    {
+        return services;
+    }
 }

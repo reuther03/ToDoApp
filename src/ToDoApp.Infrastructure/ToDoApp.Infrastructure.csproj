@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.1"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="9.0.1"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="9.0.1"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.1"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.1"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ToDoApp.Application\ToDoApp.Application.csproj" />
+    </ItemGroup>
+
+</Project>
