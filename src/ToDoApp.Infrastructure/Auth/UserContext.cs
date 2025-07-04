@@ -1,12 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
-using TripManager.Application.Abstractions;
-using TripManager.Domain.Users;
-using TripManager.Domain.Users.ValueObjects;
-using TripManager.Infrastructure.Authentication;
+using ToDoApp.Application.Database;
+using ToDoApp.Domain.User;
+using ToDoApp.Infrastructure.Authentication;
 
-namespace TripManager.Infrastructure.Auth;
+namespace ToDoApp.Infrastructure.Auth;
 
 internal sealed class UserContext : IUserContext
 {

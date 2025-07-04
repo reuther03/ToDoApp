@@ -1,4 +1,4 @@
-﻿namespace TripManager.Application;
+﻿namespace ToDoApp.Application;
 
 /// <summary>
 /// Marker interface for the Application layer assembly

@@ -1,4 +1,4 @@
-﻿namespace TripManager.Common.Primitives.Pagination;
+﻿namespace ToDoApp.Common.Primitives.Pagination;
 
 public class PaginatedList<T>
 {

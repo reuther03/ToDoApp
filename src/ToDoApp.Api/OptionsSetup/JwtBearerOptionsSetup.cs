@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using TripManager.Infrastructure.Authentication;
+using ToDoApp.Infrastructure.Authentication;
 
-namespace TripManager.Api.OptionsSetup;
+namespace ToDoApp.Api.OptionsSetup;
 
 public class JwtBearerOptionsSetup : IConfigureOptions<JwtBearerOptions>
 {

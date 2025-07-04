@@ -1,6 +1,6 @@
-﻿using TripManager.Common.Primitives.Domain;
+﻿using ToDoApp.Common.Primitives.Domain;
 
-namespace TripManager.Domain.Users.ValueObjects;
+namespace ToDoApp.Domain.User;
 
 public sealed record Username : ValueObject
 {

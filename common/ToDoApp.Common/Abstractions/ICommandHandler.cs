@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace TripManager.Common.Abstractions;
+namespace ToDoApp.Common.Abstractions;
 
 public interface ICommandHandler<in TCommand, TResponse> : IRequestHandler<TCommand, TResponse>
     where TCommand : ICommand<TResponse>

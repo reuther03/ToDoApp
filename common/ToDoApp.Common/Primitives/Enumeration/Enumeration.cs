@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace TripManager.Common.Primitives.Enumeration;
+namespace ToDoApp.Common.Primitives.Enumeration;
 
 public abstract class Enumeration<TEnum> : IEquatable<Enumeration<TEnum>>
     where TEnum : Enumeration<TEnum>

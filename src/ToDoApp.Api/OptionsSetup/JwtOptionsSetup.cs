@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Options;
-using TripManager.Infrastructure.Authentication;
+using ToDoApp.Infrastructure.Authentication;
 
-namespace TripManager.Api.OptionsSetup;
+namespace ToDoApp.Api.OptionsSetup;
 
 public class JwtOptionsSetup : IConfigureOptions<JwtOptions>
 {

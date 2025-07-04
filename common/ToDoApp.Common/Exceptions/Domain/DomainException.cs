@@ -1,4 +1,4 @@
-﻿namespace TripManager.Common.Exceptions.Domain;
+﻿namespace ToDoApp.Common.Exceptions.Domain;
 
 public class DomainException : Exception
 {

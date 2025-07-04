@@ -1,7 +1,6 @@
-﻿using TripManager.Common.Exceptions.Domain;
-using TripManager.Common.Primitives.Domain;
+﻿using ToDoApp.Common.Primitives.Domain;
 
-namespace TripManager.Domain.Users;
+namespace ToDoApp.Domain.User;
 
 public record UserId : ValueObject
 {
@@ -11,7 +10,7 @@ public record UserId : ValueObject
     {
         if (value == Guid.Empty)
         {
-            throw new DomainException("User id cannot be empty.");
+            throw new InvalidCastException("Value cannot be empty.");
         }
 
         Value = value;

@@ -1,6 +1,8 @@
-﻿namespace ToDoApp.Infrastructure.Database;
+﻿using Microsoft.EntityFrameworkCore;
+using ToDoApp.Application.Database;
 
-public class ToDoDbContext
+namespace ToDoApp.Infrastructure.Database;
+
+public sealed class ToDoDbContext : DbContext, IToDoDbContext
 {
-    
 }

@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using TripManager.Domain.Users;
-using TripManager.Domain.Users.ValueObjects;
+using ToDoApp.Domain.User;
 
-namespace TripManager.Application.Abstractions;
+namespace ToDoApp.Application.Database;
 
 public interface IUserContext
 {

@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
-using TripManager.Common.Exceptions.Domain;
-using TripManager.Common.Primitives.Domain;
+using ToDoApp.Common.Exceptions.Domain;
+using ToDoApp.Common.Primitives.Domain;
 
-namespace TripManager.Domain.Users.ValueObjects;
+namespace ToDoApp.Domain.User;
 
 public sealed partial record Email : ValueObject
 {

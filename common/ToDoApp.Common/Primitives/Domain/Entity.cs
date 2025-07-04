@@ -1,6 +1,6 @@
-﻿using TripManager.Common.Primitives.DomainEvents;
+﻿using ToDoApp.Common.Primitives.DomainEvents;
 
-namespace TripManager.Common.Primitives.Domain;
+namespace ToDoApp.Common.Primitives.Domain;
 
 public interface IEntity
 {

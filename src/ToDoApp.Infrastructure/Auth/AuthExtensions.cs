@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using TripManager.Application.Abstractions;
-using TripManager.Common;
-using TripManager.Infrastructure.Authentication;
+using ToDoApp.Application.Database;
+using ToDoApp.Common;
+using ToDoApp.Infrastructure.Authentication;
 
-namespace TripManager.Infrastructure.Auth;
+namespace ToDoApp.Infrastructure.Auth;
 
 public static class AuthExtensions
 {

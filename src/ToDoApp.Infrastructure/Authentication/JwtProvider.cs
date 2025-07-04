@@ -3,10 +3,10 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using TripManager.Application.Abstractions;
-using TripManager.Domain.Users;
+using ToDoApp.Application.Database;
+using ToDoApp.Domain.User;
 
-namespace TripManager.Infrastructure.Authentication;
+namespace ToDoApp.Infrastructure.Authentication;
 
 public sealed class JwtProvider : IJwtProvider
 {
@@ -37,7 +37,7 @@ public sealed class JwtProvider : IJwtProvider
             _options.Audience,
             claims,
             null,
-            DateTime.Now.AddMinutes(30),
+            DateTime.Now.AddMinutes(60),
             signingCredentials);
 
         var tokenValue = new JwtSecurityTokenHandler().WriteToken(token);

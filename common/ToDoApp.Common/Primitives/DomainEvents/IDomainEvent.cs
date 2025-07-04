@@ -1,5 +1,5 @@
 ﻿using MediatR;
 
-namespace TripManager.Common.Primitives.DomainEvents;
+namespace ToDoApp.Common.Primitives.DomainEvents;
 
 public interface IDomainEvent : INotification;

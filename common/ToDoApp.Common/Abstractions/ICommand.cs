@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace TripManager.Common.Abstractions;
+namespace ToDoApp.Common.Abstractions;
 
 /// <summary>
 /// Marker interface for <see cref="ICommand"/> and <see cref="ICommand{TResponse}"/>

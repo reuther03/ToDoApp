@@ -1,6 +1,6 @@
-﻿using TripManager.Domain.Users;
+﻿using ToDoApp.Domain.User;
 
-namespace TripManager.Application.Abstractions;
+namespace ToDoApp.Application.Database;
 
 public interface IJwtProvider
 {

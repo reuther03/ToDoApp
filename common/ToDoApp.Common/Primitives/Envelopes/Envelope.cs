@@ -1,4 +1,4 @@
-﻿namespace TripManager.Common.Primitives.Envelopes;
+﻿namespace ToDoApp.Common.Primitives.Envelopes;
 
 public class Envelope
 {

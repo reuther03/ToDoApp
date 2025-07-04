@@ -1,4 +1,4 @@
-﻿namespace TripManager.Common.Primitives;
+﻿namespace ToDoApp.Common.Primitives;
 
 public class Result
 {

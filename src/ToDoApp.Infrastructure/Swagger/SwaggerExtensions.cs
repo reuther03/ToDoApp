@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace TripManager.Infrastructure.Utilities.Swagger;
+namespace ToDoApp.Infrastructure.Swagger;
 
 public static class SwaggerExtensions
 {

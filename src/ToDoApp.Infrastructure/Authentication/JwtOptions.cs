@@ -1,4 +1,4 @@
-﻿namespace TripManager.Infrastructure.Authentication;
+﻿namespace ToDoApp.Infrastructure.Authentication;
 
 public class JwtOptions
 {
