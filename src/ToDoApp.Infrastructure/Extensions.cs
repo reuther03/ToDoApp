@@ -12,6 +12,7 @@ public static class Extensions
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddControllers();
         services.AddDatabase(configuration);
         services.AddEndpointsApiExplorer();
         services.AddSwaggerDocumentation();

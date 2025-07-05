@@ -14,7 +14,7 @@ public static class SwaggerExtensions
         {
             swagger.SwaggerDoc("v1", new OpenApiInfo
             {
-                Title = "TripManager API",
+                Title = "ToDo API",
                 Version = "v1"
             });
 
@@ -39,8 +39,6 @@ public static class SwaggerExtensions
             });
 
             swagger.EnableAnnotations();
-
-            swagger.IncludeXmlComments("TripManager.Api.xml");
         });
 
         return services;
@@ -49,7 +47,7 @@ public static class SwaggerExtensions
     public static WebApplication UseSwaggerDocumentation(this WebApplication app)
     {
         app.UseSwagger();
-        app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "TripManager API V1"); });
+        app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "ToDo API V1"); });
 
         return app;
     }

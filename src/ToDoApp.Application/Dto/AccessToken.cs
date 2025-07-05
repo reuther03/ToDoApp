@@ -1,12 +1,12 @@
-﻿using TripManager.Domain.Users;
+﻿using ToDoApp.Domain.User;
 
-namespace TripManager.Application.Features.Users.Dto;
+namespace ToDoApp.Application.Dto;
 
 public sealed class AccessToken
 {
     public string Token { get; init; } = null!;
     public Guid UserId { get; init; }
-    public string Fullname { get; init; } = null!;
+    public string Username { get; init; } = null!;
 
     public static AccessToken Create(User user, string token)
     {
@@ -14,7 +14,7 @@ public sealed class AccessToken
         {
             Token = token,
             UserId = user.Id,
-            Fullname = user.Fullname
+            Username = user.Username
         };
     }
 }

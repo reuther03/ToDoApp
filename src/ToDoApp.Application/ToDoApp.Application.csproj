@@ -10,4 +10,12 @@
       <ProjectReference Include="..\ToDoApp.Domain\ToDoApp.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Features\Commands\DeleteTask\" />
+      <Folder Include="Features\Commands\Login\" />
+      <Folder Include="Features\Commands\UpdateTask\" />
+      <Folder Include="Features\Queries\GetTasks\" />
+      <Folder Include="Features\Queries\GetTask\" />
+    </ItemGroup>
+
 </Project>

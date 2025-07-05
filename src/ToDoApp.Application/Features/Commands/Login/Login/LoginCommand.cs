@@ -1,10 +1,9 @@
-﻿using TripManager.Application.Abstractions;
-using TripManager.Application.Abstractions.Database.Repositories;
-using TripManager.Application.Features.Users.Dto;
-using TripManager.Common.Abstractions;
-using TripManager.Common.Exceptions.Application;
+﻿using ToDoApp.Application.Database;
+using ToDoApp.Application.Database.Repositories;
+using ToDoApp.Application.Dto;
+using ToDoApp.Common.Abstractions;
 
-namespace TripManager.Application.Features.Users.Commands.Login;
+namespace ToDoApp.Application.Features.Commands.Login.Login;
 
 public record LoginCommand(string Email, string Password) : ICommand<AccessToken>
 {
@@ -22,10 +21,10 @@ public record LoginCommand(string Email, string Password) : ICommand<AccessToken
         public async Task<AccessToken> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetByEmailAsync(request.Email)
-                ?? throw new ApplicationValidationException("User not found");
+                ?? throw new InvalidOperationException($"User with email {request.Email} not found");
 
             if (!user.Password.Verify(request.Password))
-                throw new ApplicationValidationException("Invalid password");
+                throw new InvalidOperationException("Invalid password");
 
             return AccessToken.Create(user, _jwtProvider.Generate(user));
         }

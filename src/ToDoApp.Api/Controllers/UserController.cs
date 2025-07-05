@@ -5,11 +5,11 @@ using ToDoApp.Application.Features.Commands.SignUp;
 
 namespace ToDoApp.Api.Controllers;
 
-public class UsersController : ControllerBase
+public class UserController : ControllerBase
 {
     private readonly ISender _sender;
 
-    public UsersController(ISender sender)
+    public UserController(ISender sender)
     {
         _sender = sender;
     }

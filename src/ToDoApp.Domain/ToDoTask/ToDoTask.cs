@@ -17,16 +17,17 @@ public class ToDoTask : Entity<Guid>
     {
     }
 
-    private ToDoTask(Guid id, string title, string description, bool isCompleted, DateTime createdAt)
+    private ToDoTask(Guid id, string title, string description, UserId userId)
         : base(id)
     {
         Title = title;
         Description = description;
-        IsCompleted = isCompleted;
-        CreatedAt = createdAt;
+        IsCompleted = false;
+        CreatedAt = DateTime.UtcNow;
         CompletedAt = null;
+        UserId = userId;
     }
 
-    public static ToDoTask Create(string title, string description) =>
-        new(Guid.NewGuid(), title, description, false, DateTime.UtcNow);
+    public static ToDoTask Create(string title, string description, UserId userId) =>
+        new(Guid.NewGuid(), title, description, userId);
 }
