@@ -17,7 +17,7 @@ public static class Extensions
         services.AddScoped<IToDoDbContext, ToDoDbContext>();
 
         services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<IToDoTaskRepository, ToDoTaskRepository>();
+        services.AddScoped<IToDoRepository, ToDoRepository>();
 
         return services;
     }
