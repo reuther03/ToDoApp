@@ -5,6 +5,7 @@ using ToDoApp.Application.Features.Commands.AddGroup;
 using ToDoApp.Application.Features.Commands.AddTask;
 using ToDoApp.Application.Features.Commands.DeleteTask;
 using ToDoApp.Application.Features.Commands.MarkTaskAsCompleted;
+using ToDoApp.Application.Features.Commands.RemoveGroup;
 using ToDoApp.Application.Features.Commands.UpdateTask;
 
 namespace ToDoApp.Api.Controllers;
@@ -56,6 +57,14 @@ public class ToDoController : ControllerBase
     {
         var command = new DeleteTaskCommand(taskId, groupId);
         await _sender.Send(command, cancellationToken);
+        return NoContent();
+    }
+
+    [HttpDelete("group/{groupId:guid}")]
+    [Authorize]
+    public async Task<IActionResult> DeleteGroup(Guid groupId, CancellationToken cancellationToken = default)
+    {
+        await _sender.Send(new RemoveGroupCommand(groupId), cancellationToken);
         return NoContent();
     }
 }

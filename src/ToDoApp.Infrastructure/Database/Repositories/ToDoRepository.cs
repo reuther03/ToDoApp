@@ -32,6 +32,18 @@ public class ToDoRepository : IToDoRepository
         await _context.SaveChangesAsync(cancellationToken);
     }
 
+    public async Task RemoveGroupAsync(Guid groupId, UserId userId, CancellationToken cancellationToken = default)
+    {
+        var group = await _context.TaskGroups
+            .FirstOrDefaultAsync(g => g.Id == groupId && g.OwnerId == userId, cancellationToken);
+
+        if (group is null)
+            return;
+
+        _context.TaskGroups.Remove(group);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
     public Task AddTaskAsync(ToDoTask toDoTask, CancellationToken cancellationToken = default)
     {
         _context.ToDoItems.Add(toDoTask);
