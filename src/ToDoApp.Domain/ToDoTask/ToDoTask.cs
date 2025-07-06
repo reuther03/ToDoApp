@@ -44,4 +44,10 @@ public class ToDoTask : Entity<Guid>
             CompletedAt = DateTime.UtcNow;
         }
     }
+
+    public void Update(string title, string description)
+    {
+        Title = title;
+        Description = description;
+    }
 }

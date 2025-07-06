@@ -5,6 +5,7 @@ using ToDoApp.Application.Features.Commands.AddGroup;
 using ToDoApp.Application.Features.Commands.AddTask;
 using ToDoApp.Application.Features.Commands.DeleteTask;
 using ToDoApp.Application.Features.Commands.MarkTaskAsCompleted;
+using ToDoApp.Application.Features.Commands.UpdateTask;
 
 namespace ToDoApp.Api.Controllers;
 
@@ -38,6 +39,14 @@ public class ToDoController : ControllerBase
     public async Task<IActionResult> MarkTaskAsCompleted([FromBody] MarkTaskAsCompletedCommand command, CancellationToken cancellationToken = default)
     {
         var result = await _sender.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    [HttpPut("tasks/{taskId:guid}")]
+    [Authorize]
+    public async Task<IActionResult> UpdateTask(Guid taskId, [FromBody] UpdateTaskCommand command, CancellationToken cancellationToken = default)
+    {
+        var result = await _sender.Send(command with { TaskId = taskId }, cancellationToken);
         return Ok(result);
     }
 
