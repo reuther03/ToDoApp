@@ -10,4 +10,6 @@ public interface IToDoRepository
     Task RemoveTaskAsync(Guid taskId, UserId userId, CancellationToken cancellationToken = default);
     Task AddTaskAsync(ToDoTask toDoTask, CancellationToken cancellationToken = default);
     Task AddGroupAsync(TaskGroup taskGroup, CancellationToken cancellationToken = default);
+
+    Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }

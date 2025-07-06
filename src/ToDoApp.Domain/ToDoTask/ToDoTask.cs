@@ -30,4 +30,18 @@ public class ToDoTask : Entity<Guid>
 
     public static ToDoTask Create(string title, string description, UserId userId) =>
         new(Guid.NewGuid(), title, description, userId);
+
+    public void MarkAsCompleted()
+    {
+        if (IsCompleted)
+        {
+            IsCompleted = false;
+            CompletedAt = null;
+        }
+        else
+        {
+            IsCompleted = true;
+            CompletedAt = DateTime.UtcNow;
+        }
+    }
 }

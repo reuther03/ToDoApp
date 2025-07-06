@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ToDoApp.Application.Features.Commands.AddGroup;
 using ToDoApp.Application.Features.Commands.AddTask;
 using ToDoApp.Application.Features.Commands.DeleteTask;
+using ToDoApp.Application.Features.Commands.MarkTaskAsCompleted;
 
 namespace ToDoApp.Api.Controllers;
 
@@ -32,6 +33,13 @@ public class ToDoController : ControllerBase
         return Ok(result);
     }
 
+    [HttpPatch("tasks/mark-completed")]
+    [Authorize]
+    public async Task<IActionResult> MarkTaskAsCompleted([FromBody] MarkTaskAsCompletedCommand command, CancellationToken cancellationToken = default)
+    {
+        var result = await _sender.Send(command, cancellationToken);
+        return Ok(result);
+    }
 
     [HttpDelete("tasks/{taskId:guid}")]
     [Authorize]

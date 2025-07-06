@@ -43,4 +43,9 @@ public class ToDoRepository : IToDoRepository
         _context.TaskGroups.Add(taskGroup);
         return _context.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task SaveChangesAsync(CancellationToken c = default)
+    {
+        await _context.SaveChangesAsync(c);
+    }
 }
