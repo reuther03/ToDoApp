@@ -7,10 +7,11 @@ using ToDoApp.Application.Features.Commands.DeleteTask;
 using ToDoApp.Application.Features.Commands.MarkTaskAsCompleted;
 using ToDoApp.Application.Features.Commands.RemoveGroup;
 using ToDoApp.Application.Features.Commands.UpdateTask;
+using ToDoApp.Application.Features.Queries;
 
 namespace ToDoApp.Api.Controllers;
 
-public class ToDoController : ControllerBase
+public class ToDoController : BaseController
 {
     private readonly ISender _sender;
 
@@ -19,12 +20,20 @@ public class ToDoController : ControllerBase
         _sender = sender;
     }
 
+    [HttpGet("groups")]
+    [Authorize]
+    public async Task<IActionResult> GetGroups(CancellationToken cancellationToken = default)
+    {
+        var result = await _sender.Send(new GetGroupsQuery(), cancellationToken);
+        return HandleResult(result);
+    }
+
     [HttpPost("tasks")]
     [Authorize]
     public async Task<IActionResult> AddTask([FromBody] AddTaskCommand command, CancellationToken cancellationToken = default)
     {
         var result = await _sender.Send(command, cancellationToken);
-        return Ok(result);
+        return HandleResult(result);
     }
 
     [HttpPost("group")]
@@ -32,7 +41,7 @@ public class ToDoController : ControllerBase
     public async Task<IActionResult> AddGroup([FromBody] AddGroupCommand command, CancellationToken cancellationToken = default)
     {
         var result = await _sender.Send(command, cancellationToken);
-        return Ok(result);
+        return HandleResult(result);
     }
 
     [HttpPatch("tasks/mark-completed")]
@@ -40,7 +49,7 @@ public class ToDoController : ControllerBase
     public async Task<IActionResult> MarkTaskAsCompleted([FromBody] MarkTaskAsCompletedCommand command, CancellationToken cancellationToken = default)
     {
         var result = await _sender.Send(command, cancellationToken);
-        return Ok(result);
+        return HandleResult(result);
     }
 
     [HttpPut("tasks/{taskId:guid}")]
@@ -48,7 +57,7 @@ public class ToDoController : ControllerBase
     public async Task<IActionResult> UpdateTask(Guid taskId, [FromBody] UpdateTaskCommand command, CancellationToken cancellationToken = default)
     {
         var result = await _sender.Send(command with { TaskId = taskId }, cancellationToken);
-        return Ok(result);
+        return HandleResult(result);
     }
 
     [HttpDelete("tasks/{taskId:guid}")]

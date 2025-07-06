@@ -12,8 +12,6 @@
 
     <ItemGroup>
       <Folder Include="Features\Commands\Login\" />
-      <Folder Include="Features\Queries\GetTasks\" />
-      <Folder Include="Features\Queries\GetTask\" />
     </ItemGroup>
 
 </Project>

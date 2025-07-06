@@ -10,12 +10,30 @@ namespace ToDoApp.Infrastructure;
 
 public static class Extensions
 {
+    private const string CorsPolicy = "cors";
+
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddCors(cors =>
+        {
+            cors.AddPolicy(CorsPolicy, x =>
+            {
+                // x.WithOrigins("http://localhost:5000", "https://localhost:5000","http://localhost:50001", "https://localhost:5001")
+                //     .WithMethods("GET", "POST", "PUT", "DELETE")
+                //     .AllowAnyOrigin()
+                //     .AllowAnyHeader()
+                //     .AllowCredentials();
+                x.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
+        });
+
         services.AddControllers();
         services.AddDatabase(configuration);
         services.AddEndpointsApiExplorer();
         services.AddSwaggerDocumentation();
+
 
         services.AddAuth(configuration);
 
@@ -29,6 +47,7 @@ public static class Extensions
 
     public static WebApplication UseInfrastructure(this WebApplication app)
     {
+        app.UseCors(CorsPolicy);
         app.UseSwaggerDocumentation();
         app.UseAuthentication();
         app.UseAuthorization();

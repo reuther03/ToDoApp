@@ -5,7 +5,7 @@ using ToDoApp.Application.Features.Commands.SignUp;
 
 namespace ToDoApp.Api.Controllers;
 
-public class UserController : ControllerBase
+public class UserController : BaseController
 {
     private readonly ISender _sender;
 
@@ -18,13 +18,13 @@ public class UserController : ControllerBase
     public async Task<IActionResult> SignUp(SignUpCommand command, CancellationToken cancellationToken = default)
     {
         var result = await _sender.Send(command, cancellationToken);
-        return Ok(result);
+        return HandleResult(result);
     }
 
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginCommand command, CancellationToken cancellationToken = default)
     {
         var token = await _sender.Send(command, cancellationToken);
-        return Ok(token);
+        return HandleResult(token);
     }
 }

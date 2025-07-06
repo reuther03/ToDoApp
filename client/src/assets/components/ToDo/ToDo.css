@@ -1,0 +1,48 @@
+﻿.form-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5a3eb0;
+}
+.group-form, .task-form {
+    background-color: #1f1b24;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: #fff;
+}
+.group-form h2, .task-form h2 {
+    text-align: center;
+}
+.group-form label, .task-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+}
+.group-form input, .task-form input, .task-form textarea {
+    margin-top: 0.25rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #2a2530;
+    color: #fff;
+}
+.restore .btn-action.btn-add, .btn-action.btn-add-task {
+    background-color: #3498db;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+}
+.btn-action.btn-add:hover, .btn-action.btn-add-task:hover {
+    background-color: #2980b9;
+}

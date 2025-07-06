@@ -1,0 +1,113 @@
+﻿.todo-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #5a3eb0;
+    margin: 0;
+    padding: 0;
+}
+
+.todo-box {
+    background-color: #1f1b24;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 800px;
+}
+
+.todo-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+}
+
+.todo-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #ffffff;
+}
+
+.todo-table th,
+.todo-table td {
+    border: 1px solid #3a2b4d;
+    padding: 0.5rem;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.todo-table thead th {
+    background-color: #4a3575;
+    font-weight: 600;
+}
+
+.group-row td {
+    background-color: #2e1d50;
+    font-weight: 600;
+}
+
+.task-row td {
+    background-color: #372865;
+}
+
+.task-row td:nth-child(3),
+.task-row td:nth-child(4) {
+    padding-left: 1.5rem;
+}
+
+.btn-action {
+    padding: 0.25rem 0.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin: 0 0.25rem;
+}
+
+.btn-group-rem {
+    background-color: #e74c3c;
+    color: #fff;
+}
+.btn-group-rem:hover {
+    background-color: #c0392b;
+}
+
+.btn-task-rem {
+    background-color: #f39c12;
+    color: #fff;
+}
+.btn-task-rem:hover {
+    background-color: #d35400;
+}
+
+
+/* Add to Home.css */
+.complete-checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+}
+.complete-checkbox:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-complete {
+    background-color: #2ecc71;
+    color: #fff;
+}
+.btn-complete:hover {
+    background-color: #27ae60;
+}
+
+.btn-uncomplete {
+    background-color: #f1c40f;
+    color: #fff;
+}
+.btn-uncomplete:hover {
+    background-color: #d4ac0d;
+}
