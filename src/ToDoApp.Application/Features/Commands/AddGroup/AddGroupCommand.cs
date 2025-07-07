@@ -22,14 +22,19 @@ public record AddGroupCommand(GroupCategory Category, string Title) : ICommand<G
 
         public async Task<Guid> Handle(AddGroupCommand request, CancellationToken cancellationToken)
         {
+            // Sprawdzenie, czy użytkownik jest zalogowany
             var user = await _userRepository.GetByIdAsync(_userContext.UserId!, cancellationToken);
+            // Jeśli użytkownik nie istnieje, zgłoś wyjątek
             if (user is null)
                 throw new InvalidOperationException("User not found");
 
+            // tworzenie nowej grupy zadań
             var group = TaskGroup.Create(request.Title, request.Category, user.Id);
 
+            // Dodanie grupy do repozytorium
             await _toDoRepository.AddGroupAsync(group, cancellationToken);
 
+            // zwrócenie identyfikatora nowo utworzonej grupy
             return group.Id;
         }
     }

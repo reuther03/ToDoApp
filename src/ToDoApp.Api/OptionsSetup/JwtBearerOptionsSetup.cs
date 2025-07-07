@@ -6,6 +6,7 @@ using ToDoApp.Infrastructure.Authentication;
 
 namespace ToDoApp.Api.OptionsSetup;
 
+// konfiguracja opcji JwtBearerOptions dla uwierzytelniania JWT.
 public class JwtBearerOptionsSetup : IConfigureOptions<JwtBearerOptions>
 {
     private readonly JwtOptions _jwtOptions;

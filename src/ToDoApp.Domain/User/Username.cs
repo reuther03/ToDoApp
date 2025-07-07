@@ -2,6 +2,7 @@
 
 namespace ToDoApp.Domain.User;
 
+// Username reprezentuje unikalną nazwę użytkownika w aplikacji ToDoApp.
 public sealed record Username : ValueObject
 {
     public string Value { get; set; }

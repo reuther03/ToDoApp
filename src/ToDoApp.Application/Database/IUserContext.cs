@@ -3,6 +3,7 @@ using ToDoApp.Domain.User;
 
 namespace ToDoApp.Application.Database;
 
+// IUserContext interface reprezentuje kontekst użytkownika w aplikacji ToDoApp.
 public interface IUserContext
 {
     [MemberNotNullWhen(true, nameof(UserId), nameof(Email), nameof(Username))]

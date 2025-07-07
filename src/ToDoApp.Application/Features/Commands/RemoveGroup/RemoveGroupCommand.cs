@@ -23,15 +23,19 @@ public record RemoveGroupCommand(Guid GroupId) : ICommand
 
         public async Task<Unit> Handle(RemoveGroupCommand request, CancellationToken cancellationToken)
         {
+            // Sprawdzenie, czy użytkownik jest zalogowany
             var user = await _userRepository.GetByIdAsync(_userContext.UserId!, cancellationToken);
             if (user is null)
                 throw new InvalidOperationException("User not found");
 
+            // Sprawdzenie, czy grupa zadań istnieje i czy użytkownik ma do niej dostęp
             var group = await _toDoRepository.GetGroupByIdAsync(request.GroupId, user.Id, cancellationToken);
             if (group is null)
                 throw new InvalidOperationException("Group not found");
 
+            // Usunięcie grupy z repozytorium
             await _toDoRepository.RemoveGroupAsync(group.Id, user.Id, cancellationToken);
+            // Zwrócenie jednostki, ponieważ nie zwracamy żadnej wartości
             return Unit.Value;
         }
     }

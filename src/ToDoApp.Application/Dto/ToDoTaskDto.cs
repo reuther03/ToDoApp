@@ -2,6 +2,7 @@
 
 namespace ToDoApp.Application.Dto;
 
+// ToDoTaskDto reprezentuje zadanie w aplikacji ToDoApp jako Dto
 public class ToDoTaskDto
 {
     public Guid Id { get; init; }

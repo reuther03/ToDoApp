@@ -2,6 +2,7 @@
 
 namespace ToDoApp.Application.Dto;
 
+// AccessToken reprezentuje token dostępu użytkownika w aplikacji ToDoApp.
 public sealed class AccessToken
 {
     public string Token { get; init; } = null!;

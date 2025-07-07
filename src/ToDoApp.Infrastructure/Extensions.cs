@@ -14,6 +14,7 @@ public static class Extensions
 
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
+        // rejstracja polityki CORS
         services.AddCors(cors =>
         {
             cors.AddPolicy(CorsPolicy, x =>
@@ -29,14 +30,19 @@ public static class Extensions
             });
         });
 
+        // rejestracja usług infrastruktury
         services.AddControllers();
+        // Dodatnie bazy danych
         services.AddDatabase(configuration);
         services.AddEndpointsApiExplorer();
+        // Dodatnie dokumentacji Swagger
         services.AddSwaggerDocumentation();
 
 
+        // Dodatnie uwierzytelniania
         services.AddAuth(configuration);
 
+        // Rejestracja MediatR
         services.AddMediatR(config =>
         {
             config.RegisterServicesFromAssemblies(typeof(IApplicationAssembly).Assembly, typeof(IInfrastructureAssembly).Assembly);
@@ -45,6 +51,7 @@ public static class Extensions
         return services;
     }
 
+    // Metoda rozszerzająca WebApplication, która konfiguruje middleware
     public static WebApplication UseInfrastructure(this WebApplication app)
     {
         app.UseCors(CorsPolicy);

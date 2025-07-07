@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 
 namespace ToDoApp.Infrastructure.Swagger;
 
+// SwaggerExtensions to rozszerzenie IServiceCollection, które konfiguruje dokumentację Swagger
 public static class SwaggerExtensions
 {
     public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)

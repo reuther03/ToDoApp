@@ -3,6 +3,7 @@ using ToDoApp.Infrastructure.Authentication;
 
 namespace ToDoApp.Api.OptionsSetup;
 
+// JwtOptionsSetup to klasa odpowiedzialna za konfigurację opcji JWT.
 public class JwtOptionsSetup : IConfigureOptions<JwtOptions>
 {
     private const string SectionName = "Jwt";

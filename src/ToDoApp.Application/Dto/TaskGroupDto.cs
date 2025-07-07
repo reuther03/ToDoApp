@@ -2,6 +2,7 @@
 
 namespace ToDoApp.Application.Dto;
 
+// TaskGroupDto reprezentuje grupę zadań w aplikacji ToDoApp jako Dto
 public class TaskGroupDto
 {
     public Guid Id { get; init; }

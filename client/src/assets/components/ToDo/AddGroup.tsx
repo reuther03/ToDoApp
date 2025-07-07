@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import axios, {type AxiosError} from 'axios';
 import './ToDo.css';
 
+// Definiowanie interfejsu dla odpowiedzi z serwera
 export interface AddGroupResponse {
     statusCode: number;
     isSuccess: boolean;
@@ -11,6 +12,7 @@ export interface AddGroupResponse {
     error: string | null;
 }
 
+// Lista kategorii do wyboru
 const categories = [
     {label: 'Work', value: 0},
     {label: 'Personal', value: 1},
@@ -22,6 +24,7 @@ const categories = [
     {label: 'Other', value: 7},
 ];
 
+// Komponent do dodawania grupy
 export default function AddGroup() {
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState<number | ''>('');
@@ -29,6 +32,7 @@ export default function AddGroup() {
     const navigate = useNavigate();
     const token = localStorage.getItem('accessToken')!;
 
+    // Funkcja obsługująca wysłanie formularza
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(null);
@@ -52,6 +56,7 @@ export default function AddGroup() {
         }
     };
 
+    // Renderowanie formularza dodawania grupy
     return (
         <div className="form-container">
             <form className="group-form" onSubmit={handleSubmit}>

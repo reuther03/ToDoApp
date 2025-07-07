@@ -1,5 +1,6 @@
 ﻿namespace ToDoApp.Domain.TaskGroup;
 
+// GroupCategory reprezentuje kategorie jako enum
 public enum GroupCategory
 {
     Work,

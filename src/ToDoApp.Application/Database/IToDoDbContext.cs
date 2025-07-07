@@ -5,6 +5,7 @@ using ToDoApp.Domain.User;
 
 namespace ToDoApp.Application.Database;
 
+// IToDoDbContext definiuje interfejs dla kontekstu bazy danych ToDoDbContext
 public interface IToDoDbContext
 {
     DbSet<User> Users { get; }

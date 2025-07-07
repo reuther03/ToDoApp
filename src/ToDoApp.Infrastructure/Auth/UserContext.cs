@@ -7,6 +7,7 @@ using ToDoApp.Infrastructure.Authentication;
 
 namespace ToDoApp.Infrastructure.Auth;
 
+// UserContext to implementacja IUserContext, która dostarcza informacje o aktualnie zalogowanym użytkowniku
 internal sealed class UserContext : IUserContext
 {
     private readonly IHttpContextAccessor _httpContextAccessor;

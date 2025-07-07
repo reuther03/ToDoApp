@@ -8,6 +8,7 @@ namespace ToDoApp.Infrastructure.Database;
 
 public sealed class ToDoDbContext : DbContext, IToDoDbContext
 {
+    // Definicje DbSet dla encji w bazie danych
     public DbSet<User> Users => Set<User>();
     public DbSet<TaskGroup> TaskGroups => Set<TaskGroup>();
 

@@ -1,5 +1,6 @@
 ﻿namespace ToDoApp.Infrastructure.Authentication;
 
+// JwtOptions to klasa konfiguracyjna dla opcji JWT
 public class JwtOptions
 {
     public const string SectionName = "Jwt";

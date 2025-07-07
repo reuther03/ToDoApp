@@ -2,6 +2,7 @@
 
 namespace ToDoApp.Domain.User;
 
+// UserId reprezentuje unikalny identyfikator użytkownika w aplikacji ToDoApp.
 public record UserId : ValueObject
 {
     public Guid Value { get; }
@@ -16,6 +17,7 @@ public record UserId : ValueObject
         Value = value;
     }
 
+    // Metody statyczne do tworzenia nowych instancji UserId
     public static UserId New() => new(Guid.NewGuid());
     public static UserId From(Guid value) => new(value);
     public static UserId From(string value) => new(Guid.Parse(value));

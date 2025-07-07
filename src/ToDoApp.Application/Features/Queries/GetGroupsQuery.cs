@@ -21,21 +21,26 @@ public class GetGroupsQuery : IQuery<List<TaskGroupDto>>
 
         public async Task<List<TaskGroupDto>> Handle(GetGroupsQuery request, CancellationToken cancellationToken)
         {
+            // Sprawdzenie, czy użytkownik jest zalogowany
             var user = await _context.Users
                 .FirstOrDefaultAsync(u => u.Id == _userContext.UserId, cancellationToken);
 
+            // Jeśli użytkownik nie istnieje, zgłoś wyjątek
             if (user is null)
                 throw new InvalidOperationException("User not found");
 
+            // Pobranie grup zadań dla zalogowanego użytkownika
             var groups = await _context.TaskGroups
                 .Include(g => g.Tasks)
                 .Where(g => g.OwnerId == user.Id)
                 .Select(x => TaskGroupDto.AsDto(x))
                 .ToListAsync(cancellationToken);
 
+            // Jeśli nie znaleziono żadnych grup, zgłoś wyjątek
             if (groups is null)
                 throw new InvalidOperationException("No groups found for the user");
 
+            // Zwrócenie listy grup zadań
             return groups;
         }
     }

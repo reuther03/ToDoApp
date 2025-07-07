@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios, { type AxiosError } from 'axios';
 import './ToDo.css';
 
+// Definiowanie interfejsu dla odpowiedzi z serwera
 export interface AddTaskResponse {
     statusCode: number;
     isSuccess: boolean;
@@ -11,6 +12,7 @@ export interface AddTaskResponse {
     error: string | null;
 }
 
+// Komponent do dodawania zadania
 export default function AddTask() {
     const { groupId } = useParams<{ groupId: string }>();
     const [title, setTitle] = useState('');
@@ -19,6 +21,7 @@ export default function AddTask() {
     const navigate = useNavigate();
     const token = localStorage.getItem('accessToken')!;
 
+    // obsługa wysłania formularza dodawania zadania
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(null);
@@ -43,6 +46,7 @@ export default function AddTask() {
         }
     };
 
+    // renderowanie formularza dodawania zadania
     return (
         <div className="form-container">
             <form className="task-form" onSubmit={handleSubmit}>

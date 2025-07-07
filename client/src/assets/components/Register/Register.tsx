@@ -1,9 +1,9 @@
-﻿// Register.tsx
-import React, {useState} from 'react';
+﻿import React, {useState} from 'react';
 import axios, {type AxiosError} from 'axios';
 import {useNavigate} from 'react-router-dom';
 import './Register.css';
 
+// definiowanie interfejsów dla danych rejestracji i odpowiedzi
 export interface SignUpResponse {
     statusCode: number;
     isSuccess: boolean;
@@ -12,12 +12,14 @@ export interface SignUpResponse {
 }
 
 export default function Register() {
+    // hooki do zarządzania stanem i nawigacją
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
 
+    // funkcja obsługująca wysłanie formularza rejestracji
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(null);
@@ -41,6 +43,7 @@ export default function Register() {
         }
     };
 
+    // renderowanie formularza rejestracji
     return (
         <div className="register-container">
             <form className="register-form" onSubmit={handleSubmit}>

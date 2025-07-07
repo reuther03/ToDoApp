@@ -39,6 +39,7 @@ public record Password : ValueObject
         yield return Value;
     }
 
+    // hasher do hasla
     private static class PasswordHasher
     {
         private const char SegmentDelimiter = ':';

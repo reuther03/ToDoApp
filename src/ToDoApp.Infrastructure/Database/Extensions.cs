@@ -11,11 +11,13 @@ public static class Extensions
 {
     public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
+        // Rejestracja kontekstu bazy danych ToDoDbContext
         services.AddDbContext<ToDoDbContext>(options =>
             options.UseSqlServer(@"server=(localdb)\MSSQLLocalDB;database=ToDo;trusted_connection=true;"));
 
         services.AddScoped<IToDoDbContext, ToDoDbContext>();
 
+        // Rejestracja repozytoriów
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IToDoRepository, ToDoRepository>();
 

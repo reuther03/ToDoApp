@@ -1,8 +1,9 @@
 ﻿import React, {useState} from 'react';
 import axios, {type AxiosError} from 'axios';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import './Login.css';
 
+// zdefinowanie interfejsów dla danych logowania i odpowiedzi
 interface LoginData {
     token: string;
     userId: string;
@@ -16,12 +17,15 @@ interface LoginResponse {
     error: string | null;
 }
 
+// komponent logowania
 export default function Login() {
+    // hooki do zarządzania stanem i nawigacją
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
 
+    // funkcja obsługująca wysłanie formularza logowania
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
@@ -45,6 +49,7 @@ export default function Login() {
         }
     };
 
+    // renderowanie formularza logowania
     return (
         <div className="login-container">
             <form className="login-form" onSubmit={handleSubmit}>
@@ -69,6 +74,9 @@ export default function Login() {
                     />
                 </label>
                 <button type="submit">Login</button>
+                <Link to="/register">
+                    Register
+                </Link>
             </form>
         </div>
     );

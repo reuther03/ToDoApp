@@ -22,18 +22,25 @@ public record AddTaskCommand(Guid GroupId, string Title, string Description) : I
 
         public async Task<Guid> Handle(AddTaskCommand request, CancellationToken cancellationToken)
         {
+            // Sprawdzenie, czy użytkownik jest zalogowany
             var user = await _userRepository.GetByIdAsync(_userContext.UserId, cancellationToken);
+            // Jeśli użytkownik nie istnieje, zgłoś wyjątek
             if (user is null)
                 throw new InvalidOperationException("User not found");
 
+            // Sprawdzenie, czy grupa zadań istnieje i czy użytkownik ma do niej dostęp
             var group = await _toDoRepository.GetGroupByIdAsync(request.GroupId, user.Id, cancellationToken);
             if (group is null)
                 throw new InvalidOperationException("Task group not found or you do not have access to it");
 
+            // Tworzenie nowego zadania
             var task = ToDoTask.Create(request.Title, request.Description, user.Id);
+            // Dodanie zadania do grupy
             group.AddTask(task);
 
+            // Dodanie zadania do repozytorium
             await _toDoRepository.AddTaskAsync(task, cancellationToken);
+            // zwrócenie identyfikatora nowo utworzonego zadania
             return task.Id;
         }
     }

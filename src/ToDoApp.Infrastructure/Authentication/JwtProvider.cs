@@ -8,6 +8,7 @@ using ToDoApp.Domain.User;
 
 namespace ToDoApp.Infrastructure.Authentication;
 
+// JwtProvider to implementacja IJwtProvider, która generuje token JWT dla użytkownika
 public sealed class JwtProvider : IJwtProvider
 {
     private readonly JwtOptions _options;
@@ -19,19 +20,22 @@ public sealed class JwtProvider : IJwtProvider
 
     public string Generate(User user)
     {
+        // Tworzenie listy roszczeń (claims) dla tokenu JWT
         List<Claim> claims =
         [
-            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-            new Claim(JwtRegisteredClaimNames.UniqueName, user.Username),
-            new Claim(ClaimConsts.UserId, user.Id.ToString()),
-            new Claim(ClaimConsts.Email, user.Email),
-            new Claim(ClaimConsts.Username, user.Username)
+            new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new(JwtRegisteredClaimNames.UniqueName, user.Username),
+            new(ClaimConsts.UserId, user.Id.ToString()),
+            new(ClaimConsts.Email, user.Email),
+            new(ClaimConsts.Username, user.Username)
         ];
 
+        // Ustawienie roszczeń dla tokenu JWT
         var signingCredentials = new SigningCredentials(
             new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey)),
             SecurityAlgorithms.HmacSha256Signature);
 
+        // Tworzenie tokenu JWT z roszczeniami, datą ważności i podpisem
         var token = new JwtSecurityToken(
             _options.Issuer,
             _options.Audience,
@@ -46,6 +50,7 @@ public sealed class JwtProvider : IJwtProvider
     }
 }
 
+// ClaimConsts to klasa zawierająca stałe nazwy roszczeń (claims) używanych w tokenie JWT
 public static class ClaimConsts
 {
     public const string UserId = "user_id";

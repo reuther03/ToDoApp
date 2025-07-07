@@ -4,6 +4,8 @@ import {Link, useNavigate} from 'react-router-dom';
 import axios, {AxiosError} from 'axios';
 import './Home.css';
 
+// tworzenie interfejsów dla zadań i grup
+// sa to potrzebne do typowania danych
 interface Task {
     id: string;
     title: string;
@@ -27,34 +29,43 @@ interface ApiResponse<T> {
     error: string | null;
 }
 
+// tworzenie komponentu Home
 export function Home() {
+    // Hooki do nawigacji i stanu
     const navigate = useNavigate();
     const [data, setData] = useState<Group[]>([]);
 
-    // Fetch groups and tasks
+    // useEffect do pobierania danych po załadowaniu komponentu
     useEffect(() => {
+        // sprawdzenie czy użytkownik jest zalogowany
         const token = localStorage.getItem('accessToken');
         if (!token) {
             navigate('/login');
             return;
         }
 
+        // tworzenie kontrolera do anulowania żądania
         const controller = new AbortController();
 
-        // inner async function
+        // funkcja do pobierania danych z API
         async function fetchData(): Promise<void> {
             try {
+                // wysyłanie żądania GET do API
                 const resp = await axios.get<ApiResponse<Group[]>>(
                     'http://localhost:5000/todo/groups',
                     {headers: {Authorization: `Bearer ${token}`}, signal: controller.signal}
                 );
+                // sprawdzenie odpowiedzi i ustawienie danych
                 if (!resp.data.isSuccess) {
                     throw new Error(resp.data.error || 'Fetch failed');
                 }
+                // ustawienie danych w stanie komponentu
                 setData(resp.data.data);
             } catch (err) {
+                // obsługa błędów
                 const ae = err as AxiosError;
                 if (ae.response?.status === 401) {
+                    // jeśli użytkownik nie jest autoryzowany, usunięcie tokena i przekierowanie do logowania
                     localStorage.removeItem('accessToken');
                     navigate('/login');
                 } else {
@@ -63,20 +74,25 @@ export function Home() {
             }
         }
 
+        // wywołanie funkcji pobierającej dane
         fetchData();
         return () => {
             controller.abort();
         };
     }, [navigate]);
 
+    // funkcje do zmiany stanu zadania
     const handleToggleCompleted = async (groupId: string, taskId: string) => {
+        // pobranie tokena z localStorage
         const token = localStorage.getItem('accessToken')!;
         try {
+            // wysłanie żądania PATCH do API w celu zmiany stanu zadania
             await axios.patch<ApiResponse<boolean>>(
                 'http://localhost:5000/todo/tasks/mark-completed',
                 {groupId, taskId},
                 {headers: {Authorization: `Bearer ${token}`}}
             );
+            // aktualizacja stanu komponentu
             setData(prev => prev.map(g => g.id === groupId
                 ? {
                     ...g,
@@ -91,11 +107,13 @@ export function Home() {
                 }
                 : g
             ));
+            // logowanie informacji o zakończeniu zmiany stanu
         } catch (err) {
             console.error('Toggle completed error', err);
         }
     };
 
+    // funkcja do usuwania zadania
     const handleRemoveTask = async (groupId: string, taskId: string) => {
         const token = localStorage.getItem('accessToken')!;
         try {
@@ -114,6 +132,7 @@ export function Home() {
     };
 
 
+    // funkcja do usuwania grupy
     const handleRemoveGroup = async (groupId: string) => {
         const token = localStorage.getItem('accessToken')!;
         try {
@@ -127,18 +146,22 @@ export function Home() {
         }
     };
 
+    // funkcja do wylogowania użytkownika
     const handleLogout = () => {
         localStorage.removeItem('accessToken');
         navigate('/login');
     };
 
+    // renderowanie komponentu
     return (
+        // JSX do renderowania interfejsu użytkownika
         <div className="todo-container">
             <div className="todo-box">
-                <h1 className="todo-title">Get Things Done!</h1>
+                <h1 className="todo-title">To Do App</h1>
                 <table className="todo-table">
                     <thead>
                     <tr>
+                        {/* naglowek */}
                         <th>Group Actions</th>
                         <th>Category</th>
                         <th>Name</th>
@@ -151,6 +174,7 @@ export function Home() {
                     </tr>
                     </thead>
                     <tbody>
+                    {/* pobieranie grup */}
                     {data.map(group => (
                         <Fragment key={group.id}>
                             <tr className="group-row">
@@ -165,6 +189,7 @@ export function Home() {
                                 <td>{group.name}</td>
                                 <td colSpan={5} />
                                 <td className="action-cell">
+                                    {/* dodanie nowego zadania */}
                                     <Link
                                         to={`/add-task/${group.id}`}
                                         className="btn-action"
@@ -173,6 +198,7 @@ export function Home() {
                                     </Link>
                                 </td>
                             </tr>
+                            {/* pobranie zadan */}
                             {group.tasks.map(task => (
                                 <tr className="task-row" key={task.id}>
                                     <td />
@@ -181,6 +207,7 @@ export function Home() {
                                     <td>{task.title}</td>
                                     <td>{task.description}</td>
                                     <td>
+                                        {/* zmaian stanu zadania */}
                                         <button
                                             className={task.isCompleted ? 'btn-action btn-uncomplete' : 'btn-action btn-complete'}
                                             onClick={() => handleToggleCompleted(group.id, task.id)}>
@@ -202,6 +229,7 @@ export function Home() {
                     ))}
                     </tbody>
                 </table>
+                {/* dodanie grupy i logout */}
                 <div className="footer-actions">
                     <button className="logout-button" onClick={handleLogout}>Logout</button>
                     <Link to="/add-group" className="btn-action btn-add footer-add">Add Group</Link>
